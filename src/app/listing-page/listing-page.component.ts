@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Listing } from '../types';
-import { fakeListing } from '../fake_data';
+import { ListingService } from '../listing.service';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -14,10 +14,10 @@ import { CommonModule } from '@angular/common';
 export class ListingPageComponent implements OnInit {
  listing:Listing[]=[];
 
- constructor(){}
+ constructor(private listingService:ListingService){}
 
  ngOnInit(): void {
-   this.listing=fakeListing;
+   this.listingService.getListing().subscribe(listing=>this.listing=listing);
  }
 
 }
